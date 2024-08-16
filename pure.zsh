@@ -139,6 +139,10 @@ prompt_pure_preprompt_render() {
 	# Username and machine, if applicable.
 	[[ -n $prompt_pure_state[username] ]] && preprompt_parts+=($prompt_pure_state[username])
 
+        if zstyle -t ":prompt:pure:time" show; then
+		preprompt_parts+=('%F{${prompt_pure_colors[time]}}%t%f')
+	fi
+
 	# Set the path.
 	preprompt_parts+=('%F{${prompt_pure_colors[path]}}%~%f')
 
@@ -834,6 +838,7 @@ prompt_pure_setup() {
 		user                 242
 		user:root            default
 		virtualenv           242
+		time		     050
 	)
 	prompt_pure_colors=("${(@kv)prompt_pure_colors_default}")
 
